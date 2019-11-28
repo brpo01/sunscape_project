@@ -1,0 +1,151 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+{% block title %} | Blog{% endblock %}
+{% block content %}
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+	
+	<!-- Header section -->
+	<header class="header-section">
+		<!-- logo -->
+		<a href="{% url 'index' %}" class="site-logo">
+			<h2 style="color:tomato; font-weight: normal">Sunscape</h2><img src="{% static 'media/img/logo.png' %}" alt="">
+		</a>
+		<div class="nav-switch">
+			<i class="fa fa-bars"></i>
+		</div>
+		<div class="container">
+			<ul class="main-menu">
+				<li><a href="{% url 'index' %}">Home</a></li>
+				<li><a href="{% url 'about' %}">About Us</a></li>
+				<li><a href="{% url 'properties' %}">Property</a></li>
+				<li><a href="{% url 'developments' %}">Devs</a></li>
+				<li><a href="{% url 'blog' %}">News</a></li>
+				<li><a href="{% url 'contact' %}">Contact</a></li>
+				<li class="ml-3"><a href="{% url 'dashboard' %}" style="color:tomato">(DASHBOARD)</a></li>
+			</ul>
+		</div>
+	</header>
+	<!-- Header section end -->
+	
+	<!-- Page top section -->
+	<section class="page-top-section set-bg" data-setbg="{% static 'media/img/page-top-bg/3.jpg' %}">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="page-top-text text-white">
+						<h2>News</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit mauris congue.</p>
+						{% if not request.user.is_authenticated %}
+							<a href="{% url 'account_signup' %}" class="btn btn-outline-warning btn-lg mr-3 mt-3">SignUp</a>
+							<a href="{% url 'account_login' %}" class="btn btn-outline-success btn-lg mt-3">Login</a>
+						{% else %}
+							<a href="{% url 'account_logout' %}" class="btn btn-outline-danger btn-lg mt-3">Logout</a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="hero-social-warp">
+			<div class="hero-social">
+				<a href=""><i class="fa fa-facebook"></i></a>
+				<a href=""><i class="fa fa-linkedin"></i></a>
+				<a href=""><i class="fa fa-twitter"></i></a>
+				<a href=""><i class="fa fa-youtube-play"></i></a>
+				<a href=""><i class="fa fa-instagram"></i></a>
+			</div>
+		</div>
+	</section>
+	<!-- Page top section end -->
+
+	<!-- Blog section-->
+	<section class="blog-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<!-- <div class="blog-categorise">
+						<a href="">Areas</a>
+						<a href="">Architecture</a>
+						<a href="">In Progress</a>
+						<a href="">Design</a>
+					</div> -->
+				</div>
+				<div class="col-lg-4">
+					<form class="blog-search">
+						<input type="text" placeholder="Search in News Articles">
+						<button><img src="{% static 'media/img/search.png' %}" alt=""></button>
+					</form>
+				</div>
+			</div>
+			<div class="blog-item">
+				<div class="row">
+					<div class="col-lg-4 col-md-5">
+						<div class="blog-thumb set-bg" data-setbg="{% static 'media/img/blog/1.jpg' %}"></div>
+					</div>
+					<div class="col-lg-8 col-md-7">
+						<div class="blog-content">
+							<div class="blog-date">25 January 2019</div>
+							<!-- <div class="blog-note">Featured</div> -->
+							<h2>Donec hendrerit id lectus vel vehicula</h2>
+							<p>In vel dignissim tellus, a ultrices magna. Curabitur dignissim fringilla felis sed vulputate. Donec fringilla massa enim, ut sodales massa venenatis eget. Nunc et orci libero. Aliquam sodales felis nunc, vitae varius nunc tristique non. Sed id fringil-la nibh. Cras finibus, orci at ultrices imperdiet, dui lectus lacinia nibh rcu eget tincidunt viverra. Nullam sagittis arcu nec vulputate cursus. Quisque venenatis ultrices vestibulum. </p>
+							<a href="#" class="site-btn">READ MORE</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="blog-item">
+				<div class="row">
+					<div class="col-lg-4 col-md-5">
+						<div class="blog-thumb set-bg" data-setbg="{% static 'media/img/blog/2.jpg' %}"></div>
+					</div>
+					<div class="col-lg-8 col-md-7">
+						<div class="blog-content">
+							<div class="blog-date">25 January 2019</div>
+							<h2>Vivamus sagittis est quis bibendum volutpat Maecenas maximus tellus non nisl alec</h2>
+							<p>In vel dignissim tellus, a ultrices magna. Curabitur dignissim fringilla felis sed vulputate. Donec fringilla massa enim, ut sodales massa venenatis eget. Nunc et orci libero. Aliquam sodales felis nunc, vitae varius nunc tristique non. Sed id fringilla nibh. </p>
+							<a href="#" class="site-btn">READ MORE</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="blog-item">
+				<div class="row">
+					<div class="col-lg-4 col-md-5">
+						<div class="blog-thumb set-bg" data-setbg="{% static 'media/img/blog/3.jpg' %}">
+							<a href="" class="play-btn"><img src="{% static 'media/img/play-icon.png' %}" alt=""></a>
+						</div>
+					</div>
+					<div class="col-lg-8 col-md-7">
+						<div class="blog-content">
+							<div class="blog-date">25 January 2019</div>
+							<h2>bibendum volutpat Maecenas maximus tellus non nisl alec</h2>
+							<p>In vel dignissim tellus, a ultrices magna. Curabitur dignissim fringilla felis sed vulputate. Donec fringilla massa enim, ut sodales massa venenatis eget. Nunc et orci libero. Aliquam sodales felis nunc, vitae varius nunc tristique non. Sed id fringil-la nibh. Cras finibus, orci at ultrices imperdiet, dui lectus lacinia nibh rcu eget tincidunt viverra. Nullam sagittis arcu nec vulputate cursus. Quisque venenatis ultrices vestibulum. </p>
+							<a href="#" class="site-btn">READ MORE</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="blog-item">
+				<div class="row">
+					<div class="col-lg-4 col-md-5">
+						<div class="blog-thumb set-bg" data-setbg="{% static 'media/img/blog/4.jpg' %}"></div>
+					</div>
+					<div class="col-lg-8 col-md-7">
+						<div class="blog-content">
+							<div class="blog-date">25 January 2019</div>
+							<h2>Aliquam sodales felis nunc, vitae varius nunc tristique non.</h2>
+							<p>In vel dignissim tellus, a ultrices magna. Curabitur dignissim fringilla felis sed vulputate. Donec fringilla massa enim, ut sodales massa venenatis eget. Nunc et orci libero. Aliquam sodales felis nunc, vitae varius nunc tristique non. Sed id fringil-la nibh. Cras finibus, orci at ultrices imperdiet, dui lectus lacinia nibh rcu eget tincidunt viverra. Nullam sagittis arcu nec vulputate cursus. Quisque venenatis ultrices vestibulum. </p>
+							<a href="#" class="site-btn">READ MORE</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="text-center pt-4">
+				<a href="#" class="site-btn sb-solid">LOAD MORE</a>
+			</div>
+		</div>
+	</section>
+	<!-- Blog section end-->
+{% endblock %}

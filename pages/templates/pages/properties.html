@@ -1,0 +1,223 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} | Browse Our Properties{% endblock %}
+{% block content %}
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+	
+	<!-- Header section -->
+	<header class="header-section">
+		<!-- logo -->
+		<a href="{% url 'index' %}" class="site-logo">
+				<h2 style="color:tomato; font-weight: normal">Sunscape</h2><img src="{% static 'media/img/logo.png' %}" alt="">
+		</a>
+		<div class="nav-switch">
+			<i class="fa fa-bars"></i>
+		</div>
+		<div class="container">
+			<ul class="main-menu">
+				<li><a href="{% url 'index' %}">Home</a></li>
+				<li><a href="{% url 'about' %}">About Us</a></li>
+				<li><a href="{% url 'properties' %}">Property</a></li>
+				<li><a href="{% url 'developments' %}">Devs</a></li>
+				<li><a href="{% url 'blog' %}">News</a></li>
+				<li><a href="{% url 'contact' %}">Contact</a></li>
+				<li class="ml-3">
+					<a href="{% url 'dashboard' %}" style="color:tomato">(DASHBOARD)</a>
+				</li>
+			</ul>
+		</div>
+	</header>
+	<!-- Header section end -->
+	
+	<!-- Page top section -->
+	<section class="page-top-section set-bg" data-setbg="{% static 'media/img/page-top-bg/2.jpg' %}">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="page-top-text text-white">
+						<h2>Properties</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit mauris congue.</p>
+						{% if not request.user.is_authenticated %}
+							<a href="{% url 'account_signup' %}" class="btn btn-outline-warning btn-lg mr-3 mt-3">SignUp</a>
+							<a href="{% url 'account_login' %}" class="btn btn-outline-success btn-lg mt-3">Login</a>
+						{% else %}
+							<a href="{% url 'account_logout' %}" class="btn btn-outline-danger btn-lg mt-3">Logout</a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="hero-social-warp">
+			<div class="hero-social">
+				<a href="{% url 'properties' %}"><i class="fa fa-facebook"></i></a>
+				<a href=""><i class="fa fa-linkedin"></i></a>
+				<a href=""><i class="fa fa-twitter"></i></a>
+				<a href=""><i class="fa fa-youtube-play"></i></a>
+				<a href=""><i class="fa fa-instagram"></i></a>
+			</div>
+		</div>
+	</section>
+	<!-- Page top section end -->
+
+	<!-- Property details section -->
+	{% if properties %}
+		{% for property in properties %}
+	<section class="property-details-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-6 col-lg-7">
+					<div class="property-details">
+						<h2>{{ property.address }}</h2>
+						<h4><i class="fa fa-map-marker text-secondary"></i> {{property.city}} {{property.state}}, {{property.zipcode}}</p></h4>
+						<img src="{{ property.photo_3.url }}" alt="" class="img-thumbnail">
+						<div style="margin-bottom:25px; font-size: 25px; margin-top:25px;">
+							<i class="fa fa-user"></i>
+							<span> {{ property.agent }}</span>
+						</div>
+						<div class="property-info">
+							<h6>Lot Size</h6>
+							<div class="pi-icon">
+								<i class="flaticon-151-plans"></i>
+								<span>{{ property.sqft }}</span>
+							</div>
+						</div>
+						<div class="property-info">
+							<h6>Beds</h6>
+							<div class="pi-icon">
+								<i class="flaticon-151-beds"></i>
+								<span>{{ property.bedrooms }}</span>
+							</div>
+						</div>
+						<div class="property-info">
+							<h6>Baths</h6>
+							<div class="pi-icon">
+								<i class="flaticon-151-relax"></i>
+								<span>{{ property.bathrooms }}</span>
+							</div>
+						</div>
+						<div class="property-info">
+							<h6>Garage</h6>
+							<div class="pi-icon">
+								<i class="flaticon-151-transportation"></i>
+								<span>{{ property.garage }} </span>
+							</div>
+						</div>
+						<div class="property-info">
+							<h6>Posted</h6>
+							<div class="pi-icon">
+								<i class="fa fa-hourglass"></i>
+								<span>{{ property.list_date|timesince }} ago </span>
+							</div>
+						</div>
+					</div>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed sollicitudin sem. Curabitur sollicitudin enim vel lacus vehicula, vitae so-dales ipsum porta.</p>
+					<a href="{% url 'property' pk=property.pk %}" class="site-btn">MORE INFO</a>
+					
+				</div>
+				<div class="col-xl-6 col-lg-5 text-lg-right text-left">
+					<div class="property-price">
+						<h2>${{ property.price|intcomma }}</h2>
+						<p>(taxes excluded)</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Property details section end -->
+
+	<!-- Property features slider -->
+	<!-- <div class="property-features-slider owl-carousel">
+		<a href="{{ property.photo_1.url }}" class="img-popup-gallery">
+			<img src="{{ property.photo_1.url }}" alt="">
+			<i class="flaticon-151-reading-glasses"></i>
+		</a>
+		<a href="{{ property.photo_2.url }}" class="img-popup-gallery">
+			<img src="{{ property.photo_2.url }}" alt="">
+			<i class="flaticon-151-reading-glasses"></i>
+		</a>
+		<a href="{{ property.photo_3.url }}" class="img-popup-gallery">
+			<img src="{{ property.photo_3.url }}" alt="">
+			<i class="flaticon-151-reading-glasses"></i>
+		</a>
+		<a href="{{ property.photo_4.url }}" class="img-popup-gallery">
+			<img src="{{ property.photo_4.url }}" alt="">
+			<i class="flaticon-151-reading-glasses"></i>
+		</a>
+	</div> -->
+	<!-- Property features slider end -->
+	
+		{% endfor %}
+	{% else %}
+		<div class="col-md-12">
+			<h4>No Properties are avialable at the moment. </h4>
+		</div>
+	{% endif %}
+
+	<section>
+		<div class="container mb-4 mt-4">
+			<div class="row">
+				<div class="col-md-12">
+					{% if properties.has_other_pages %}
+					<ul class="pagination">
+						{% if properties.has_previous %}
+							<li class="page-item">
+								<a href="?page={{properties.previous_page_number}}" class="page-link">&laquo;</a>
+							</li>
+						{% else %}
+							<li class="page-item disabled">
+								<a class="page-link">&laquo;</a>
+							</li>
+						{% endif %}
+
+						{% for i in properties.paginator.page_range %}
+							{% if properties.number == i %}
+								<li class="page-item active">
+									<a class="page-link">{{i}}</a>
+								</li>
+							{% else %}
+								<li class="page-item">
+									<a href="?page={{i}}" class="page-link">{{i}}</a>
+								</li>
+							{% endif %}
+						{% endfor %}
+
+						{% if properties.has_next %}
+							<li class="page-item">
+								<a href="?page={{properties.next_page_number}}" class="page-link">&raquo;</a>
+							</li>
+						{% else %}
+							<li class="page-item disabled">
+								<a class="page-link">&laquo;</a>
+							</li>
+						{% endif %}
+					</ul>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- Call to action section -->
+	<section class="call-to-action-section set-bg" data-setbg="{% static 'media/img/cta-bg.jpg' %}">
+		<div class="container text-white text-center">
+			<h2>Ask our top consultants for an personalized offer today.</h2>
+			<button class="site-btn sb-light sb-big">CALL 800-1-5141</button>
+		</div>
+	</section>
+	<!-- Call to action section end-->
+<style>
+	.property-overview-text ul li {
+	font-size: 18px;
+	color: #73778e;
+	margin-bottom: 20px;
+	padding-left: 50px;
+	background-image: url("../static/media/img/check.png");
+	background-repeat: no-repeat;
+	background-position: left top 6px;
+}
+</style>
+{% endblock %}
