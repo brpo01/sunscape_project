@@ -8,11 +8,6 @@
 
 'use strict';
 
-setTimeout(function(){
-	('#message').fadeOut('slow');
-},3000);
-
-
 $(window).on('load', function() {
 	/*------------------
 		Preloder
