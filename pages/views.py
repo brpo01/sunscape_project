@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from properties.models import Propertie
 from agents.models import Agent
 from properties.choices import state_choices, price_choices, bedroom_choices
 from django.contrib.auth.decorators import login_required
 from contacts.models import Contact
+from django.contrib import messages
 
 def index(request):
     properties = Propertie.objects.order_by('-list_date').filter(is_published=True)[:3]
@@ -45,6 +46,33 @@ def blog(request):
 
 
 def contact(request):
+    if request.method == 'POST':
+        message = request.POST['message']
+        
+        #check if user has made inquiry
+        if request.user.is_authenticated:
+            user_id = request.user.id
+            has_contacted = Contact.objects.all().filter(user_id=user_id)
+            
+            if has_contacted:
+                messages.error(request, 'You have made contact already')
+                return redirect('contact')
+            
+        contact = Contact(message=message)
+        contact.save()
+        
+        send_mail(
+            'Property Listing Inquiry',
+            'There has been an inquiry for ' + properties + '. Sign into the admin for more information',
+            'opraise139@gmail.com',
+            [agent_email, 'opraise139@gmail.com'],
+            fail_silently = False,
+        )
+        
+        messages.success(request, 'Your request has been submitted')
+        
+        return redirect('index')
+        
     template_name = 'pages/contact.html'
     return render(request, template_name)
 

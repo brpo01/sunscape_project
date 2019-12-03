@@ -25,8 +25,10 @@
 				<li><a href="{% url 'developments' %}">Devs</a></li>
 				<li><a href="{% url 'blog' %}">News</a></li>
 				<li><a href="{% url 'contact' %}">Contact</a></li>
-				<li class="ml-3">
-					<a href="{% url 'dashboard' %}" style="color:tomato">(DASHBOARD)</a>
+				<li class="ml-2">
+				{% if request.user.is_authenticated %}
+				<a href="{% url 'dashboard' %}" style="color:tomato">{{request.user}}(DASHBOARD)</a>
+				{% endif %}
 				</li>
 			</ul>
 		</div>

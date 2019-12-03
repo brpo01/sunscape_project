@@ -1,0 +1,1 @@
+web: gunicorn sunscape.wsgi --log-file -

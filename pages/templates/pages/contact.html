@@ -24,7 +24,11 @@
 				<li><a href="{% url 'developments' %}">Devs</a></li>
 				<li><a href="{% url 'blog' %}">News</a></li>
 				<li><a href="{% url 'contact' %}">Contact</a></li>
-				<li class="ml-3"><a href="{% url 'dashboard' %}" style="color:tomato">(DASHBOARD)</a></li>
+				<li class="ml-2">
+				{% if request.user.is_authenticated %}
+				<a href="{% url 'dashboard' %}" style="color:tomato">{{request.user}}(DASHBOARD)</a>
+				{% endif %}
+				</li>
 			</ul>
 		</div>
 	</header>
@@ -66,6 +70,7 @@
 			<div class="row">
 				<div class="col-lg-7 offset-lg-5">
 					<div class="contact-info-box">
+							{% include 'pages/_alerts.html' %}
 						<h5 class="contact-title">OFFICE</h5>
 						<div class="contact-info">
 							<div class="ci-item">
@@ -78,21 +83,24 @@
 							</div>
 						</div>
 						<h5 class="contact-title">QUICK HELLO</h5>
-						<form class="contact-form">
-							<div class="form-field">
-								<img src="{% static 'media/img/icons/profile.png' %}" alt="" >
-								<input type="text" placeholder="Full Name">
-							</div>
-							<div class="form-field">
-								<img src="{% static 'media/img/icons/envelope.png' %}" alt="" >
-								<input type="text" placeholder="Email Address">
-							</div>
-							<div class="form-field">
-								<img src="{% static 'media/img/icons/chat.png' %}" alt="" >
-								<textarea placeholder="Hi ..."></textarea>
-							</div>
-							<button class="site-btn">send</button>
-						</form>
+							<form class="contact-form" action="{% url 'contact' %}" method="POST">
+								{% csrf_token %}
+								<div class="form-field">
+									<img src="{% static 'media/img/icons/profile.png' %}" alt="" >
+									<input type="text" placeholder="Full Name" {% if request.user.is_authenticated %}
+									value = "{{ user.first_name }} {{ user.last_name }}"{% endif %}>
+								</div>
+								<div class="form-field">
+									<img src="{% static 'media/img/icons/envelope.png' %}" alt="">
+									<input type="text" placeholder="Email Address" {% if request.user.is_authenticated %}
+									value = "{{ user.email }}"{% endif %}>
+								</div>
+								<div class="form-field">
+									<img src="{% static 'media/img/icons/chat.png' %}" alt="" >
+									<textarea placeholder="Hi ..." name="message"></textarea>
+								</div>
+								<button class="site-btn">send</button>
+							</form>
 					</div>
 				</div>
 			</div>

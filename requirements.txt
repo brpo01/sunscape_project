@@ -19,6 +19,7 @@ django-tag-parser==3.1
 django-template-analyzer==1.6.1
 django-wysiwyg==0.8.0
 future==0.18.1
+gunicorn==20.0.4
 html5lib==1.0.1
 idna==2.8
 mypy==0.740
@@ -35,6 +36,7 @@ six==1.12.0
 soupsieve==1.9.4
 sqlparse==0.3.0
 stripe==2.38.0
+Transcrypt==3.7.16
 typed-ast==1.4.0
 typing-extensions==3.7.4.1
 urllib3==1.25.6
