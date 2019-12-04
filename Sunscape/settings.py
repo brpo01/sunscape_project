@@ -205,4 +205,4 @@ ACCOUNT_FORMS = {
 
 ACCOUNT_ADAPTER = 'pages.adapter.UsernameMaxAdapter'
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
