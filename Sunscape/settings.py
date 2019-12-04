@@ -34,7 +34,7 @@ SECRET_KEY = 'e_6n*helx^-((gl%ic=n+opf)w)%00@ag4hi2o_s@*(*f*dyjy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'sunscape']
 
 
 # Application definition
