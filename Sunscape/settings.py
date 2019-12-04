@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -112,7 +113,7 @@ WSGI_APPLICATION = 'Sunscape.wsgi.application'
 
 
 DATABASES = {
-    'default': DATABASE_URL.config(
+    'default': dj_database_url.config(
         default = "postgres://lqthelypzsdcua:d46f681a53b17c5624677b933f457d1c7cdea099f4d746ba0ea0a18d6498163b@ec2-107-22-195-114.compute-1.amazonaws.com:5432/d43p024relttg0"
     )
 }
