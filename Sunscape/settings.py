@@ -110,16 +110,25 @@ WSGI_APPLICATION = 'Sunscape.wsgi.application'
 #     }
 # }
 
+
 DATABASES = {
-    'default':{
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Sunscape',
-        'USER': 'postgres',
-        'PASSWORD': 'praisesax',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': DATABASE_URL.config(
+        default = "postgres://lqthelypzsdcua:d46f681a53b17c5624677b933f457d1c7cdea099f4d746ba0ea0a18d6498163b@ec2-107-22-195-114.compute-1.amazonaws.com:5432/d43p024relttg0"
+    )
 }
+
+
+# DATABASES = {
+#     'default':{
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Sunscape',
+#         'USER': 'postgres',
+#         'PASSWORD': 'praisesax',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 
 
 # Password validation
