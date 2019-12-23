@@ -22,7 +22,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 #email config
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'opraise139@gmail.com'
-EMAIL_HOST_PASSWORD = 'praisesax'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT ='587'
 EMAIL_USE_TLS = True
 
@@ -33,7 +33,7 @@ EMAIL_USE_TLS = True
 SECRET_KEY = 'e_6n*helx^-((gl%ic=n+opf)w)%00@ag4hi2o_s@*(*f*dyjy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*', 'sunscape']
 
